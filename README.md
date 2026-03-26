@@ -1,25 +1,25 @@
 # M25CSE002-A2-NLU-
 # M25CSE002-A2-NLU
 
-**Course/Domain:** Natural Language Understanding (NLU) / Computer Science and Engineering  
+**Course:** Natural Language Understanding (NLU) 
 **Student Name:** Abhishek Gehlot  
 **Student ID:** M25CSE002  
 
-This repository contains the complete codebase, datasets, and analytical report for NLU Assignment 2. The project is divided into two comprehensive problems exploring deep learning applications in NLP: training custom word embeddings from scratch and building character-level sequence models for text generation.
+This repository contains two Jupyter Notebooks (`NLU P1.ipynb` and `NLU P2.ipynb`) focused on core Natural Language Understanding tasks: Corpus creation, Exploratory Data Analysis, Word Embeddings, and Character-level Language Modeling (Name Generation).
 
 ---
 
 ## 📑 Table of Contents
-1. [Project 1: Learning Word Embeddings from Scratch](#project-1-learning-word-embeddings-from-scratch)
-2. [Project 2: Character-Level Indian Name Generation](#project-2-character-level-indian-name-generation)
-3. [Repository Structure](#repository-structure)
-4. [Setup & Update Instructions](#setup--update-instructions)
-5. [Execution Guide](#execution-guide)
-6. [Key Findings & Report](#key-findings--report)
+1. [Project 1: Learning Word Embeddings from Scratch](#problem-1-learning-word-embeddings-from-scratch)
+2. [Project 2: Character-Level Indian Name Generation](#problem-2-character-level-indian-name-generation)
+3. [Repository Contents](#repository-contents)
+4. [Repository Structure](#repository-structure)
+5. [Prerequisites and Setup](#Prerequisites and Setup)
+
 
 ---
 
-## 🧠 Project 1: Learning Word Embeddings from Scratch
+##  Problem 1: Learning Word Embeddings from IITJ Jodhpur
 
 **Objective:** Build an end-to-end NLP pipeline to scrape domain-specific data, construct a vocabulary, and train Word2Vec architectures entirely from scratch using PyTorch (without utilizing high-level libraries like Gensim).
 
@@ -32,7 +32,7 @@ This repository contains the complete codebase, datasets, and analytical report 
 
 ---
 
-## 📝 Project 2: Character-Level Indian Name Generation
+## 📝 Problem 2: Character-Level Indian Name Generation
 
 **Objective:** Design and compare sequence models to generate novel, diverse, and phonetically realistic Indian names based on a curated dataset of 1,000 regional names.
 
@@ -46,6 +46,34 @@ This repository contains the complete codebase, datasets, and analytical report 
 
 ---
 
+
+## 📁 Repository Contents
+
+### 1. `NLU P1.ipynb` (Dataset Preparation & Word Embeddings)
+This notebook is dedicated to building a text corpus from scratch, preprocessing it, and exploring text semantics using word embeddings.
+* **Task 1: Dataset Preparation (Comprehensive Corpus):** * Attempts to load local data (`campus_data.txt` i.e corpus.txt). 
+  * If unavailable, it implements a web scraper using `BeautifulSoup` to crawl the IIT Jodhpur website (CSE courses, academic regulations, faculty pages, etc.) to build a comprehensive corpus.
+  * Cleans and tokenizes the text using `NLTK` (removing stopwords, punctuation, etc.) and saves the output to `data/clean_corpus.txt`.
+* **Exploratory Data Analysis (EDA):** Generates dataset statistics, computes the top 20 most frequent words, plots frequency bar charts, and generates a Word Cloud.
+* **Task 2: Word Embeddings (CBOW & Skip-gram):** Trains/evaluates Word2Vec models (Continuous Bag of Words and Skip-gram) to perform semantic analogy tasks (e.g., evaluating cosine similarity for analogies like `teacher : class :: student : ?`).
+*  **Task 3: Report top 5 nearest neighbour for words like research , student , phd, exam:** *
+*   **Task 4: Use PCA or t-SNE to project selected word embeddings into 2D space. Visualize clusters for:
+       Provide interpretation of clustering behavior and differences between CBOW and Skip-gram.:** *
+
+### 2. `NLU P2.ipynb` (Indian Name Generation)
+This notebook focuses on Character-Level Recurrent Neural Networks (RNNs) for text generation. 
+* **Task 0: Dataset Generation:** Extracts and parses raw tokens to build a dataset of 1,000 unique Indian names, saving them to `TrainingNames.txt`. Generates dataset statistics (average length, common initials/endings).
+* **Task 1: Architecture Profiles:** Trains three different neural network architectures for character-level language modeling:
+  * Vanilla RNN
+  * Bidirectional LSTM (BiLSTM)
+  * RNN + Attention Network
+* **Task 2: Quantitative Benchmarks:** Evaluates the generative models based on **Novelty** (generating names not in the training set) and **Diversity** metrics.
+* **Task 3: Qualitative analysis:** Discuss: Realism of generated names and Common failure modes. Provide representative
+generated samples for each model.
+* **Artifact Generation:** Produces comparative loss plots (`all_loss.png`) and qualitative/quantitative evaluation metrics.
+
+---
+
 ## 📂 Repository Structure
 
 ```text
@@ -54,6 +82,15 @@ This repository contains the complete codebase, datasets, and analytical report 
  ┣ 📜 NLU P2.ipynb     # Full code pipeline for Sequence Modeling (Task 0 to Task 3)
  ┣ 📜 Report.pdf                    # Comprehensive analytical report detailing methodologies and results
  ┣ 📜 campus_data.txt               # Raw text corpus data for Problem 1
- ┣ 📂 data/                         # Generated preprocessed text and pickle files
- ┣ 📂 models/                       # Saved PyTorch .pth model weights
- ┗ 📂 outputs/                      # Generated visualizations, plots, and CSV results
+
+---
+
+
+## 📁 Prerequisites and Setup 
+
+To run these notebooks, you need Python 3.x and the following libraries installed. 
+
+You can install the required dependencies using `pip`:
+
+```bash
+pip install gensim nltk beautifulsoup4 requests matplotlib scikit-learn wordcloud pandas tabulate numpy lxml
